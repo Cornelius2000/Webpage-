@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang=”pt-br”>
+<meta charset=”UTF-8”>
+
 <head>
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script> 
+
 	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script>
 		$(function () {
@@ -12,24 +15,60 @@
 
 </head>
 
-<body> 
+<body ng-app="meuApp" ng-controller="meuCtrl"> 
 
-	<div id="header"></div>
-    <br><br>
+	<div id="header"></div><br><br>
+    
     <div id="form">   
-		<h2>Entre em contato conosco!</h2>
+		<h2>Entre em contato conosco!</h2><br>
 		
-		<form nome="signup" method="post" action="enviar.php" enctype="multipart/form-data">
-			Nome:     	<input type="text" name="nome" placeholder="Digite seu nome"> <br/><br/>
-			Email:     	<input type="email" name="email" placeholder="Digite seu Email"> <br/><br/>
-			Celular:    <input type="number" name="celular" min="0" max="11" placeholder="(xx)xxxxxxxxx"> <br/><br/>
-			Observação: <input type="text" name="observação" placeholder="Deixe o seu comentário ou dúvida!"> <br/><br/>
-			          	<input type="submit" value="Enviar"/>
-			          	<input type="reset" value="Apagar">
+		<form name="Meuform" method="post" action="enviar.php" enctype="multipart/form-data">
+
+			Nome: <input
+				type="text" 
+				name="nome" 
+				placeholder="Digite seu nome" 
+				required ><br/><br/>
+
+			Email: <input 
+				type="email" 
+				name="email" 
+				placeholder="Digite seu Email" 
+				required 
+				ng-model="email" ><br/><br/>
+			<p ng-show="Meuform.email.$dirty && Meuform.email.$invalid"> Este email não é válido, Corrija! </p>
+
+			Celular: <input
+				type="number" 
+				name="number" 
+				min="0" 
+				max="11" 
+				placeholder="(xx)xxxxxxxxx" 
+				required ><br/><br/>
+			<p ng-show="Meuform.number.$dirty && Meuform.number.$invalid"> Este número não é válido, Corrija! </p>
+
+			Observação: <input 
+				type="text" 
+				rows="20" cols="40" 
+				name="obs" 
+				placeholder="Deixe o seu comentário ou dúvida!"> <br/><br/>
+
+          	<input type="submit" value="Enviar"/>
+          	<input type="reset" value="Apagar">
 	    </form>
+		
+
 	</div>
 
     <div id="footer"></div>
+
+
+	<script type="text/javascript">
+		var app = angular.module('meuApp', []);
+		app.controller('meuCtrl', function($scope){
+
+		});	
+	</script>
 
 </body>
 </html>
